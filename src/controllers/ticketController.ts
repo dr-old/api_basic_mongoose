@@ -25,7 +25,9 @@ class TicketController {
   // Get all tickets
   getTickets = async (req: Request, res: Response) => {
     try {
-      const { status, message, data } = await ticketServices.getTickets();
+      const { status, message, data } = await ticketServices.getTickets(
+        req.query
+      );
       return formatResponse(res, status, message, data);
     } catch (error: any) {
       return formatResponse(res, 500, error.message);
