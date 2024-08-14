@@ -16,20 +16,47 @@ class TicketService {
     }
   }
 
-  // Get all tickets
-  async getTickets() {
+  // Get all tickets with pagination, filter and sort
+  getTickets = async (data: any) => {
+    const {
+      page = 1,
+      limit = 10,
+      sortField = "createdAt",
+      sortOrder = "asc",
+      filterField,
+      filterValue,
+    } = data;
+
     try {
-      const tickets = await Ticket.find();
+      const query: any = {};
+      if (filterField && filterValue) {
+        query[filterField] = new RegExp(filterValue, "i"); // Case-insensitive regex match
+      }
+
+      const tickets = await Ticket.find(query)
+        .sort({ [sortField]: sortOrder === "asc" ? 1 : -1 })
+        .skip((page - 1) * limit)
+        .limit(parseInt(limit))
+        .populate("assignedTo");
+
+      const totalTickets = await Ticket.countDocuments();
+      const totalPages = Math.ceil(totalTickets / limit);
+
       return {
         status: 200,
         message: "Success to get a tickets",
-        data: tickets,
+        data: {
+          tickets,
+          totalPages,
+          currentPage: parseInt(page),
+          totalTickets,
+        },
       };
     } catch (error) {
       console.log(error);
       throw new Error("Error fetching tickets");
     }
-  }
+  };
 
   // Get a single ticket by id
   async getTicket(id: string) {

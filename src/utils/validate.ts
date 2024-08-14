@@ -26,6 +26,9 @@ export const ticketSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string().required(),
   status: Joi.string().valid("open", "closed").required(),
+  priority: Joi.string().valid("low", "normal", "high").required(),
   assignedTo: Joi.string().required(),
-  createdBy: Joi.string().required(),
+  createdBy: Joi.string(),
+  updatedBy: Joi.string(),
+  updatedAt: Joi.date(),
 });
