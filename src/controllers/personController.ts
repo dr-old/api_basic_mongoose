@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { personSchema } from "../utils/validate";
 import { personService } from "../services/personService";
 import { formatResponse } from "../utils/helpers";
+import bcrypt from "bcryptjs";
 
 class PersonController {
   // Add a person
@@ -12,8 +13,17 @@ class PersonController {
       return res.status(400).send({ error: error.message });
     }
 
+    const hashedPassword = await bcrypt.hash(value.password, 10);
+
+    const personData = {
+      ...value,
+      password: hashedPassword,
+    };
+
     try {
-      const { status, message, data } = await personService.createPerson(value);
+      const { status, message, data } = await personService.createPerson(
+        personData
+      );
       return formatResponse(res, status, message, data);
     } catch (error: any) {
       return formatResponse(res, 500, error.message);
@@ -52,10 +62,16 @@ class PersonController {
 
     const id = req.params.id;
 
+    const hashedPassword = await bcrypt.hash(value.password, 10);
+    const personData = {
+      ...value,
+      password: hashedPassword,
+    };
+
     try {
       const { status, message, data } = await personService.updatePerson(
         id,
-        value
+        personData
       );
       return formatResponse(res, status, message, data);
     } catch (error: any) {
