@@ -4,7 +4,6 @@
 Provide a brief overview of your project here. Describe what it does, the main features, and any other relevant information.
 
 ## Technologies Used
-- **React JS**: 18.3.1
 - **Node JS**: 20.5.1
 
 ## Getting Started
@@ -35,16 +34,16 @@ Make sure you have the following installed:
 ### Running the Project
 
 To start the project, run:
-    ```sh
-    yarn start
-    ```
+```sh
+yarn start
+```
 Or if you are using npm:
-    ```sh
-    npm start
-    ```
+```sh
+npm start
+```
 
 ### Validate REST API
 Url frontend only allow:
-    ```sh
-    http://localhost:3000
-    ```
+```sh
+[yarn start](http://localhost:3000)
+```
