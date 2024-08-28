@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "Api basic is a connection to mongodb with mongoose",
   "dependencies": {
+    "@vercel/node": "^3.2.10",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
