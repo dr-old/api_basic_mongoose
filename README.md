@@ -16,20 +16,20 @@ Make sure you have the following installed:
 
 ### Installation
 1. Clone the repo
-    ```sh
-    git clone https://github.com/dr-old/api_basic_mongoose
-    ```
+```sh
+git clone https://github.com/dr-old/api_basic_mongoose
+```
 2. Navigate to the project directory
-    ```sh
-    cd api_basic_mongoose
-    ```
+```sh
+cd api_basic_mongoose
+```
 3. Install dependencies yarn or npm
-    ```sh
-    yarn install
-    ```
-    ```sh
-    npm install
-    ```
+```sh
+yarn install
+```
+```sh
+npm install
+```
 
 ### Running the Project
 
@@ -45,5 +45,5 @@ npm start
 ### Validate REST API
 Url frontend only allow:
 ```sh
-[yarn start](http://localhost:3000)
+http://localhost:3000
 ```
