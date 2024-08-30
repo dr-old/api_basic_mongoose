@@ -83,6 +83,7 @@ class AuthController {
             phone: person?.phone,
             birthday: person?.birthday,
             role: person?.role,
+            photo: person?.photo,
             createdAt: person?.createdAt,
             updatedAt: person?.updatedAt,
           }
