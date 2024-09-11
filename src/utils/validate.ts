@@ -22,6 +22,11 @@ export const personSchema = Joi.object({
   photo: Joi.string(),
 });
 
+export const categorySchema = Joi.object({
+  name: Joi.string().required(),
+  description: Joi.string(),
+});
+
 // Ticket validation schema
 export const ticketSchema = Joi.object({
   title: Joi.string().required(),

@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { personController } from "../controllers/personController";
-import authenticateJWT from "../middlewares/authMiddleware";
+import { categoryController } from "../controllers/categoryController";
 
 const router = Router();
 
-router.post("/person", personController.addPerson, authenticateJWT);
-router.get("/person", personController.getPersons, authenticateJWT);
-router.get("/person/:id", personController.getPerson, authenticateJWT);
-router.put("/person/:id", personController.updatePerson, authenticateJWT);
-router.delete("/person/:id", personController.deletePerson, authenticateJWT);
+// Define routes for category management
+router.post("/category", categoryController.addCategory);
+router.get("/category", categoryController.getCategories);
+router.get("/category/:id", categoryController.getCategory);
+router.put("/category/:id", categoryController.updateCategory);
+router.delete("/category/:id", categoryController.deleteCategory);
 
-const personRoutes = router;
+const categoryRoutes = router;
 
-export default personRoutes;
+export default categoryRoutes;
