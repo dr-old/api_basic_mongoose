@@ -10,7 +10,7 @@ class PersonController {
     const { error, value } = personSchema.validate(req.body);
 
     if (error) {
-      return res.status(400).send({ error: error.message });
+      return formatResponse(res, 400, error.message);
     }
 
     const hashedPassword = await bcrypt.hash(value.password, 10);
