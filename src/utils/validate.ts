@@ -1,6 +1,5 @@
 import Joi from "joi";
 
-// Auth validation schemas
 export const registerSchema = Joi.object({
   fullname: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -12,7 +11,6 @@ export const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-// Person validation schema
 export const personSchema = Joi.object({
   fullname: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -27,7 +25,6 @@ export const categorySchema = Joi.object({
   description: Joi.string(),
 });
 
-// Ticket validation schema
 export const ticketSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string().required(),
@@ -37,4 +34,18 @@ export const ticketSchema = Joi.object({
   createdBy: Joi.string(),
   updatedBy: Joi.string(),
   updatedAt: Joi.date(),
+});
+
+export const productSchema = Joi.object({
+  categoryId: Joi.string().required(),
+  categoryName: Joi.string().required(),
+  sku: Joi.string().required(),
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  weight: Joi.number().positive().required(),
+  width: Joi.number().positive().required(),
+  length: Joi.number().positive().required(),
+  height: Joi.number().positive().required(),
+  image: Joi.string().uri().required(), // Ensure it's a valid URI
+  price: Joi.number().positive().required(),
 });
