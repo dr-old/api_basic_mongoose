@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { categoryController } from "../controllers/categoryController";
+import { personController } from "../controllers/personController";
 
 const router = Router();
 
 // Define routes for category management
-router.post("/category", categoryController.addCategory);
-router.get("/category", categoryController.getCategories);
-router.get("/category/:id", categoryController.getCategory);
-router.put("/category/:id", categoryController.updateCategory);
-router.delete("/category/:id", categoryController.deleteCategory);
+router.post("/person", personController.addPerson);
+router.get("/person", personController.getPersons);
+router.get("/person/:id", personController.getPerson);
+router.put("/person/:id", personController.updatePerson);
+router.delete("/person/:id", personController.deletePerson);
 
-const categoryRoutes = router;
+const personRoutes = router;
 
-export default categoryRoutes;
+export default personRoutes;

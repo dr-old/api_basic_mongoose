@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
-
+import { db } from "../config/db.config";
 import authRoutes from "../routes/authRoutes";
 import personRoutes from "../routes/personRoutes";
 import ticketRoutes from "../routes/ticketRoutes";
-import { db } from "../config/db.config";
+import categoryRoutes from "../routes/categoryRoutes";
+import productRoutes from "../routes/productRoutes";
 
 const app = express();
 const port = process.env.PORT || 3012;
@@ -23,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 app.use("/api/v1", authRoutes);
+app.use("/api/v1", categoryRoutes);
+app.use("/api/v1", productRoutes);
 app.use("/api/v1", personRoutes);
 app.use("/api/v1", ticketRoutes);
 
