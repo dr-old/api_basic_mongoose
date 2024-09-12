@@ -22,10 +22,17 @@ class CategoryController {
     }
   };
 
-  // Get all categories
+  // Get all categories with optional filtering and sorting
   getCategories = async (req: Request, res: Response) => {
+    const { filterByName, filterByDescription, sortBy, sortOrder } = req.query;
+
     try {
-      const { status, message, data } = await categoryService.getCategories();
+      const { status, message, data } = await categoryService.getCategories({
+        filterByName,
+        filterByDescription,
+        sortBy,
+        sortOrder,
+      });
       return formatResponse(res, status, message, data);
     } catch (error: any) {
       return formatResponse(res, 500, error.message);

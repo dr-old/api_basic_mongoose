@@ -21,10 +21,31 @@ class CategoryService {
     }
   }
 
-  // Get all categories
-  async getCategories() {
+  // Get all categories with optional filtering and sorting
+  async getCategories(queryParams: any = {}) {
     try {
-      const categories = await Category.find({});
+      const { sortBy, sortOrder, filterByName, filterByDescription } =
+        queryParams;
+
+      const filter: any = {};
+
+      // Filtering by name and description
+      if (filterByName) {
+        filter.name = { $regex: filterByName, $options: "i" }; // case-insensitive search
+      }
+
+      if (filterByDescription) {
+        filter.description = { $regex: filterByDescription, $options: "i" }; // case-insensitive search
+      }
+
+      // Sorting: Default to ascending order by 'name' if not specified
+      const sortField = sortBy || "name";
+      const order = sortOrder === "desc" ? -1 : 1;
+
+      const categories = await Category.find(filter).sort({
+        [sortField]: order,
+      });
+
       return {
         status: 200,
         message: "Success fetching categories",
